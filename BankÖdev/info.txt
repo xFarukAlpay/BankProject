@@ -1,0 +1,74 @@
+
+Bu projede yeni kurulan bir banka için java uygulama gerçekleştirilmektedir. Bu bankada Kısa,
+Uzun Vadeli  Cari hesap ve Special hesap diye 4 farklı türden hesap olmalıdır, Hesaplara para girişi ve çıkışı olmalı ve son işlemlerde görüntülenebilmelidir, 
+güncel tarih değiştirilebilir ve faiz oranı güncel tarihe göre yeniden yapılandırılmalıdır 
+ayrıca Special hesaplara verilen kurallara bağlı olarak çekiliş yapılabilir ve her hesap türü aşağıda belirtilen
+kendine ait özelliklere sahip olmalıdır. 
+
+ Account sınıfı abstract olarak tanımlanmalıdır.
+- Bu sınıftan üretilen her nesne bir banka hesabıdır.
+- Bu sınıf şu fonksiyonlara sahip olmalıdır:
+calculateDaysDifference(): Hesabın açıldığı tarih ile güncel tarih arasındaki gün farkını hesaplar ve döndürür.
+Bu fonksiyon, hesabın kaç gün önce açıldığını hesaplamak için kullanılır.
+updateDefaultDate(): Default tarihi günceller ve güncellenmiş tarihi döndürür. 
+Bu fonksiyon, hesabın varsayılan açılış tarihini güncellemek için kullanılır.
+setBakiye(int bakiye): Hesabın bakiyesini belirtilen miktarla ayarlar.
+getBakiye(): Hesabın mevcut bakiyesini döndürür.
+setAccountId(int id): Hesap numarasını ayarlar. Bu fonksiyon, hesap numarasını yalnızca ilk kez ayarlamak için kullanılmalıdır.
+getAccountId(): Hesap numarasını döndürür.
+getBalance(): Hesabın anlık bakiyesini döndürür.
+getId(): Hesap numarasını döndürür.
+getDefaultDate(): Hesabın varsayılan açılış tarihini döndürür.
+getType(): Hesap tipini döndürür.
+benefit(): Hesap için faiz oranını hesaplar. Bu fonksiyon, hesabın faiz oranını hesaplamak için kullanılır. 
+Bu fonksiyon, alt sınıflar tarafından uygulanmalıdır (override edilmelidir).
+accountRules(): Hesap kurallarını ekrana yazdırır. Bu fonksiyon, hesaba özgü kuralları ekrana yazdırmak için kullanılır. 
+Bu fonksiyon, alt sınıflar tarafından uygulanmalıdır (override edilmelidir).
+addPoints(int amount): Hesaba puan ekler. Belirtilen miktarı hesabın puanına ekler.
+getPoints(): Hesabın puanını döndürür.
+
+Bu fonksiyonlar, Account sınıfının genel davranışını ve hesap işlemlerini yönetmek için kullanılır. 
+Ayrıca bazı fonksiyonlar abstract olarak tanımlanmıştır, bu da alt sınıfların bu fonksiyonları kendi özel gereksinimlerine göre uyarlamasını gerektirir.
+
+programda 4 tür hesap için şu kurallar tanımlamalı:
+1. ShortTerm: bu tür hesap yıllık %17 faiz verir ve en az 1000 TL hesapta bakiye olması gerekiyor.
+2. LongTerm: bu tür hesap yıllık %24 faiz verir ve en az 1500 TL hesapta bakiye olmasi gerekiyor.
+3. Current: bu hesap faizsizdir ve hesapta para olma zorunluluğu yoktur.
+4.Special: bu tür hesap yıllık %12 faiz verir ve en az hesap açtığındakı kadar para hesapta 
+bakiye olması gerekiyor
+
+
+Tüm sistemi kontrol etmesi için başka bir sınıf (Bank) tanımlanmalıdır.
+Bu sınıfta Account türünden bir değişken olmalı. (Account accounts). Bu değişken tüm hesapları tutar.
+Bu sınıf şu fonksiyonlara sahip olmalıdır:
+
+getLastInputDate(): Son giriş tarihini döndürür.
+ChangeDate(): Kullanıcıdan yeni bir tarih alarak hesapların tarihini değiştirir.
+setAccountDate(LocalDate newDate): Hesapların tarihini belirli bir tarihe ayarlar.
+setAccountDate(): Son giriş tarihini döndürür.
+getAccountDate(): Hesapların açılış tarihlerini ekrana yazdırır.
+getAccountsId(): Hesapların ID numaralarını ekrana yazdırır.
+getDate(): Güncel tarihi ekrana yazdırır.
+DefaultgetDate(): Varsayılan tarihi ekrana yazdırır.
+deposit(int Id, int cash): Belirli bir hesaba para yatırır.
+Withdraw(int Id, int cash): Belirli bir hesaptan para çeker.
+allAccountId_And_LastFiveTransactions(): Hesapların ID numaralarını ve son beş işlemi ekrana yazdırır.
+createAccount(int input): Yeni bir hesap oluşturur.
+checkAccountId(int accountId): Verilen hesap ID'sinin geçerli olup olmadığını kontrol eder.
+sortition(): Çekiliş fonksiyonunu gerçekleştirir.
+
+
+Program kullanıcıya konsoldan aşağıdaki işlemleri yapabilmesini sağlamalıdır:
+1. Create_S_ID_balance: Kısa vadeli hesap açar. (hesap no=ID, başlangıç parası = 
+balance)
+2. Create_L_ID_balance: Uzun vadeli hesap açar. (hesap no=ID, başlangıç parası = 
+balance)
+3. Create_O_ID_balance: Özel hesap açar. (hesap no=ID, başlangıç parası = balance)
+4. Create_C_ID_balance: Cari hesap açar. (hesap no=ID, başlangıç parası = balance)
+5. Increase_ID_cash: ID’ye ait hesaba “cash” kadar para ekler.
+6. Decrease_ID_cash: ID’ye ait hesaptan “cash” kadar para çeker.
+7. Set_dd_mm_yy: Sistemin şu anki tarihini düzenler.
+8. ShowAccount: Tüm hesapların ID’sini ve yaptığı son 5 işlemi gösterir.
+9. ShowIDs: Sistemdeki tüm hesap numaralarını listeler.
+10. Sortition: Özel hesaplar için kura çeker ve sonucu gösterir.
+0. Exit: Kullanıcının programdan çıkmasını ve programı sonlandırmasını sağlar.
